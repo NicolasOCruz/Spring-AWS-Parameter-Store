@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class TestController {
 
-    @Value("${process.content.url}")
+    @Value("${process.api.url}")
     private String processUrl;
+
+    @Value("${process.api.user}")
+    private String processUser;
 
     @GetMapping
     public ResponseEntity<String> get() {
-        return ResponseEntity.ok(processUrl);
+        return ResponseEntity.ok(processUrl.concat(" - ").concat(processUser));
     }
 }
